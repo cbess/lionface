@@ -3,8 +3,8 @@
 """
 attributetest.py
 
-Created by Qu on 2008-05-18.
-Copyright (c) 2008 __MyCompanyName__. All rights reserved.
+Created by Christopher Bess on 2008-05-18.
+Copyright (c) 2008 Christopher Bess. All rights reserved.
 """
 
 import unittest
