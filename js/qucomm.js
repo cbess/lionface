@@ -221,10 +221,12 @@ function QuComm() {
 						req.url += ((req.url.indexOf("?")>-1)?"&":"?") + req.queryString;
 					}
 				}
-				req.xmlHttpRequest.open(req.method,req.url,req.async,req.username,req.password);
+				req.xmlHttpRequest.open(req.method, req.url, req.async, req.username, req.password);
 				if (req.method=="POST") {
 					if (typeof(req.xmlHttpRequest.setRequestHeader)!="undefined") {
 						req.xmlHttpRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+						// add a header for django.is_ajax()
+						req.xmlHttpRequest.setRequestHeader('HTTP_X_REQUESTED_WITH', 'XMLHttpRequest');
 					}
 					content = req.queryString;
 				}

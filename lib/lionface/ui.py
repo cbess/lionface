@@ -8,7 +8,7 @@ Copyright (c) 2008 Christopher Bess. All rights reserved.
 """
 
 import config
-from utils import Utils
+from utils import Util
 from widget import Widget
 from attributes import Attributes
 
@@ -17,9 +17,20 @@ class BaseWindow(Widget):
     def __init__(self, id):
         super(BaseWindow, self).__init__(id)
         
+        self._subBuffer = ""
+        
         # setup window properties
-        #self.size
+        self.size = ( )
+        self.position = ( )
+        self.title = ""
+        self.canClose = True
+        self.canMinimize = True
+        self.canMaximize = True
         pass
+        
+    def render_sub(self):
+        """Renders the sub components of the window"""
+        return self._subBuffer
         
     def render(self):
         """renders the window"""
