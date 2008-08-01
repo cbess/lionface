@@ -6,8 +6,8 @@ globals.py
 Defines global properties for LionFace
 This is the only file you can "freely" modify
 
-Created by Qu on 2008-05-17.
-Copyright (c) 2008 __MyCompanyName__. All rights reserved.
+Created by Christopher Bess on 2008-05-17.
+Copyright (c) 2008 Christopher Bess. All rights reserved.
 """
 
 import os
