@@ -21,7 +21,7 @@ class AjaxTest(testcase.BaseTestCase):
         pass
 
     def test_send_repsonse(self):
-        """ test_send_repsonse """
+        """ test_send_response """
         self.assert_(self.Util.ajax.send_response(lionface.utils.JS_CODE, "testid", "alert('test')"), "Ajax send response failed.")
         self.assert_(self.Util.ajax.send_value("testid", "it's \" the greatest\/gest"), "Ajax send value failed.")
         self.Util.write_response()
@@ -45,4 +45,4 @@ class AjaxTest(testcase.BaseTestCase):
         
 
 if __name__ == '__main__':
-    unittest.main()
+    testcase.run_all(AjaxTest)

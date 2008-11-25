@@ -26,4 +26,4 @@ class LFOutputTest(testcase.BaseTestCase):
             % (time.localtime().__str__())) == True)
         
 if __name__ == '__main__':
-    unittest.main()
+    testcase.run_all(LFOutputTest)

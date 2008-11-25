@@ -20,6 +20,13 @@ class ExtTest(testcase.BaseTestCase):
         self.window = Ext.Window("win")
         pass
 
+    def test_window_id(self):
+        """docstring for test_window_id"""
+        from lionface import Ext
+        win = Ext.Window("winid")
+        self.assert_((win.id == "winid"), "The Ext.Window ID is not set correctly.")
+        pass
+        
     def test_window_creation(self):
         """ test_window_creation """
         self.window.title = "Test Title"
@@ -29,4 +36,4 @@ class ExtTest(testcase.BaseTestCase):
         print string
         
 if __name__ == '__main__':
-    unittest.main()
+    testcase.run_all(ExtTest)
