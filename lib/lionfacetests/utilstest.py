@@ -47,5 +47,11 @@ class UtilTest(testcase.BaseTestCase):
         self.assert_(self.Util.exec_js("alert('test')"), "Unable to pass javascript to output buffer")
         self.Util.write_response()
         
+    def test_dump_response(self):
+        """docstring for test_dump_response"""
+        self.Util.ajax.send_innerhtml("divid", "inner text response")
+        self.assert_((len(self.Util.dump_response()) > 0), "Unable to dump the Util response string")
+		
 if __name__ == '__main__':
-    unittest.main()
+    testcase.run_all(UtilTest)
+    

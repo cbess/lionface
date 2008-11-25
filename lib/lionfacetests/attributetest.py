@@ -36,4 +36,4 @@ class AttributeTest(testcase.BaseTestCase):
         self.assert_(self.attributes["test"] == "great", "Can not get the item value")
         
 if __name__ == '__main__':
-    unittest.main()
+    testcase.run_all(AttributeTest)

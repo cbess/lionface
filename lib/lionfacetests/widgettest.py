@@ -16,26 +16,34 @@ class WidgetTests(testcase.BaseTestCase):
         
         from lionface.utils import Util
         from lionface.widget import Widget
-        self.widget = Widget("id")
+        self.widget = Widget("theid")
         self.Util = Util
         pass
+        
+    def test_widget_id(self):
+        from lionface.widget import Widget
+        w = Widget("wid")
+        self.assert_(w.id == "wid", "The widget ID was not set correctly")
         
     def test_buffer_render(self):
         buf = "test"
         self.widget.set_buffer(buf)
-        self.assert_(self.widget.render() == buf, "Did not render the correct string")
+        self.assert_(self.widget.render() == buf, 
+                    "Did not render the correct string")
         pass
   
     def test_send_jscode(self):
         """ test_exec_js """
-        self.assert_(self.widget.send_jscode("alert('test')"), "Unable to add the javascript to the output buffer")
+        self.assert_(self.widget.send_jscode("alert('test')"), 
+                    "Unable to add the javascript to the output buffer")
         self.Util.write_response()
         pass
         
     def test_send_innerhtml(self):
         """ test_send_innerhtml """
-        self.assert_(self.widget.send_innerhtml("this ' is the html"), "Unable to add the innerhtml to the output buffer")
+        self.assert_(self.widget.send_innerhtml("this ' is the html"), 
+                    "Unable to add the innerhtml to the output buffer")
         self.Util.write_response()
     
 if __name__ == '__main__':
-    unittest.main()
+    testcase.run_all(WidgetTests)

@@ -51,4 +51,4 @@ class ResponseTest(testcase.BaseTestCase):
         
         
 if __name__ == '__main__':
-    unittest.main()
+    testcase.run_all(ResponseTest)
