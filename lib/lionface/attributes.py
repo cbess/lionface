@@ -42,7 +42,7 @@ class Attributes(interfaces.IRender):
         pass
     # end setAttributes
     
-    def generate_output(self):
+    def __generate_output(self):
         """ Generates the render buffer based on the internal attributes collection """
         buffer = ""
         # build the render buffer
@@ -54,11 +54,19 @@ class Attributes(interfaces.IRender):
     # end generateOutput
     
     def render(self):
-        """ renders the attributes 
+        """ Generates, then renders the attributes 
         @rtype: string
         @return: the render buffer
         """
-        return self._renderBuffer        
+        self.__generate_output()
+        return self.buffer()   
+        
+    def buffer(self):
+        """Returns the render buffer
+        @rtype: string
+        @return: the current render buffer
+        """
+        return self._renderBuffer
 
     def __count(self):
         return len(self.collection)
