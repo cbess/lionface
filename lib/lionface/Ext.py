@@ -33,12 +33,14 @@ class Window(ui.BaseWindow):
     def render(self):
         """Renders this window"""
         self._buffer = """
-        <div id="%s" class="x-hidden">
-    	    <div class="x-window-header">%s</div>
+        <div id="%(id)s" class="x-hidden">
+    	    <div class="x-window-header">%(title)s</div>
     		<div class="x-window-body">
-    		    %s
+    		    %(body)s
     	    </div>
     	</div>
-        """ % (self.id, self.title, self.render_sub())
-        
+        """ % { "id": self.id, 
+				"title": self.title, 
+				"body" : self.render_sub() 
+			}        
         return ui.BaseWindow.render(self)
