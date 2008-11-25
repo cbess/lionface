@@ -26,7 +26,7 @@ class Util(object):
     """ The class for all utility methods """
     
     __output = Response()
-    __ajax = None
+    ajax = None
     
     def __init__(self):
         """
@@ -51,10 +51,10 @@ class Util(object):
     @staticmethod
     def exec_js(src):
         """ Sends the specified source to the response buffer"""
-        if Util.__ajax is None:
+        if Util.ajax is None:
             Util.__output.write(src)
         else:
-            Util.__ajax.send_jscode(src)
+            Util.ajax.send_jscode(src)
         return True
         
     @staticmethod
@@ -96,13 +96,13 @@ class Ajax(object):
         """Writes the response to the asynchronous out buffer"""
         return Util.write_response()
 
-    def send_response(self, jstype, id, value, **args):
+    def send_response(self, jstype, id, value, **kwrds):
         """
         Sends the target value response type 
         associated with id to the response buffer
 
         @param jstype: the JS ajax response type
-        @param args: the arguments to send to the response (id, value, etc)
+        @param kwrds: the arguments to send to the response (id, value, etc)
         """   
         if id == "":
             id = None
@@ -130,7 +130,7 @@ class Ajax(object):
             if isJsCode: # if js then assign id
                 id = "JS"
             # print the response (adds the reponse to the out buffer)
-            Util.output("'%s@%s':'%s'," % (jstype, id, value))
+            Util.output(r"'%s@%s':'%s'," % (jstype, id, value))
         return canSend
 
     def send_innerhtml(self, id, value):
@@ -172,5 +172,5 @@ class Ajax(object):
 # end class Ajax
 
 
-# assign the an ajax instance to Util
+# assign the ajax instance to Util
 Util.ajax = Ajax()
