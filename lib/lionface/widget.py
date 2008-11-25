@@ -54,12 +54,10 @@ class Widget(BaseWidget, Attributes):
         """Sends the specified value to the response buffer"""
         return Util.ajax.send_value(self.id, value)
 
-        
     def send_display(self, value):
         """Sends the specified CSS display value to the response buffer"""
         return Util.ajax.send_display(id=self.id, value=value)
 
-        
     def send_disabled(self, disabled):
         """Sends the specified disabled value to the response buffer"""
         if disabled is None or disabled == False:
@@ -71,10 +69,12 @@ class Widget(BaseWidget, Attributes):
         
     def send_add_option(self, text, value):
         """Sends the specified text [and value] to the response buffer"""
+        Util.ajax.send_add_option(text, value)
         pass
         
     def send_clear_options(self):
         """Sends the clear option message to the response buffer"""
+        Util.ajax.send_clear_options(self.id)
         pass
         
     def send_class(self, value):
