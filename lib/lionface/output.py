@@ -72,22 +72,22 @@ class Response(LFOutput):
         super(Response, self).__init__()
         self._buffer = ""
         pass
-                
-    def is_async():
+    
+    @classmethod
+    def is_async(cls):
         """Determines if the request is asynchronous
         @return: True if the request is asynchronous, false otherwise
         """
-        isasync = False
+        isAsync = False
 
         if CustomAsyncDelegate is not None:
             try:
                 # if no error then get the return value
-                isasync = CustomAsyncDelegate.is_async()
+                isAsync = CustomAsyncDelegate.is_async()
             except AttributeError:
                 raise AttributeError, "CustomAsyncDelegate must implement is_async()"
         # end IF
-        return isasync
-    is_async = staticmethod(is_async)
+        return isAsync
         
     def write(self, buf):
         """
@@ -100,8 +100,6 @@ class Response(LFOutput):
         
     def write_response(self):
         """writes the response to the output buffer
-        
-        You should never call this method directly
         """
         ret = LFOutput.write(self, self._buffer)
         self.__clear_buffer()
@@ -116,6 +114,7 @@ class Response(LFOutput):
         """Returns the internal buffer as a string
         Clears the buffer
         """
+        self.__escape_buffer()
         buf = self._buffer
         self.__clear_buffer()
         return buf
@@ -123,7 +122,13 @@ class Response(LFOutput):
     def __clear_buffer(self):
         """clears the memory used by the stored buffer"""
         self._buffer = ""
-        pass    
+        pass
+        
+    def __escape_buffer(self):
+        """Escapes the new line characters in the buffer
+        """
+        self._buffer = self._buffer.replace("\r\n", "~@").replace("\n", "~!")
+        pass
     
     def __len__(self):
         """Gets the length of the response buffer"""
