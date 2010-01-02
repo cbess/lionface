@@ -41,16 +41,19 @@ class UtilTest(testcase.BaseTestCase):
     def test_is_async_response(self):
         """ test_is_async """
         self.assert_(self.Util.is_async() == False, "This is not an asynchronous response or request")
-    
+        pass
+        
     def test_exec_js(self):
         """ exec_js """
         self.assert_(self.Util.exec_js("alert('test')"), "Unable to pass javascript to output buffer")
         self.Util.write_response()
+        pass
         
     def test_dump_response(self):
         """docstring for test_dump_response"""
         self.Util.ajax.send_innerhtml("divid", "inner text response")
         self.assert_((len(self.Util.dump_response()) > 0), "Unable to dump the Util response string")
+		pass
 		
 if __name__ == '__main__':
     testcase.run_all(UtilTest)
