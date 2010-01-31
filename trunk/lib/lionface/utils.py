@@ -95,7 +95,15 @@ class Ajax(object):
     def write_response(self):
         """Writes the response to the asynchronous out buffer"""
         return Util.write_response()
-
+        
+    def send_raw(self, value, **kwrds):
+        """Sends the raw value to the buffer
+        @remark: QuComm will NOT parse this if not formatted according
+        to (PROPERTY@ID) notation
+        """
+        # add to out buffer
+        return Util.output(value)
+        
     def send_response(self, jstype, id, value, **kwrds):
         """
         Sends the target value response type 
@@ -129,8 +137,8 @@ class Ajax(object):
         if canSend:
             if isJsCode: # if js then assign id
                 id = "JS"
-            # print the response (adds the reponse to the out buffer)
-            Util.output(r"'%s@%s':'%s'," % (jstype, id, value))
+            # print the response (adds the response to the out buffer)
+            self.send_raw(r"'%s@%s':'%s'," % (jstype, id, value))
         return canSend
 
     def send_innerhtml(self, id, value):
